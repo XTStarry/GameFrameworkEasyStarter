@@ -10,7 +10,6 @@ namespace GameMain
         private void Start()
         {
             InitBuiltinComponents();
-            InitCustomComponents();
         }
     }
 }
