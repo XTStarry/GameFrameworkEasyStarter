@@ -13,20 +13,17 @@ using GameFramework.Procedure;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
 /// <summary>
-/// 启动流程
+/// 主流程
 /// </summary>
-public class ProcedureLaunch : ProcedureBase {
+public class ProcedureMain : ProcedureBase {
 
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);
-
-        ChangeState<ProcedureMain>(procedureOwner);
     }
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
     {
         base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
     }
-
 }
