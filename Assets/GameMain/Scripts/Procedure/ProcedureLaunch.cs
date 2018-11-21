@@ -30,14 +30,11 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+
+            procedureOwner.SetData<VarString>("NextSceneName", "MainMenu");
             ChangeState<ProcedureChangeScene>(procedureOwner);
 
 
-            // 加载框架UI组件
-            UIComponent UI = GameEntry.GetComponent<UIComponent>();
-
-            // 加载UI
-            UI.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_Loading.prefab","Loading");
 
         }
 
@@ -45,7 +42,10 @@ namespace GameMain
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+
             
+
+
         }
 
         // 每次离开这个流程时执行。

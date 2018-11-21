@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 223107360603206466}
   - component: {fileID: 114695561215126304}
   - component: {fileID: 114548046321346400}
+  - component: {fileID: 114392301922326040}
   m_Layer: 5
   m_Name: UI_Loading
   m_TagString: Untagged
@@ -79,6 +80,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Loading...
+--- !u!114 &114392301922326040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550665916289756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190a636d4f171f64da2f611b523d91ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114548046321346400
 MonoBehaviour:
   m_ObjectHideFlags: 1
