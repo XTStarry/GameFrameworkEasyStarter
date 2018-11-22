@@ -10,6 +10,7 @@ using System;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 using GameFramework.Procedure;
+using GameFramework.Event;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
 
@@ -31,6 +32,18 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+
+            //关闭所有场景
+            SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
+            string[] loadedSceneAssetNames = scene.GetLoadedSceneAssetNames();
+            for (int i = 0; i < loadedSceneAssetNames.Length; i++)
+            {
+                scene.UnloadScene(loadedSceneAssetNames[i]);
+            }
+
+            
+
+
         }
 
         // 每次轮询执行。
@@ -50,6 +63,8 @@ namespace GameMain
         {
             base.OnDestroy(procedureOwner);
         }
+
+        
     }
 }
 
