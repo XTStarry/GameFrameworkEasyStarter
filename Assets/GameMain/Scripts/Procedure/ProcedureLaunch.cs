@@ -31,7 +31,13 @@ namespace GameMain
         {
             base.OnEnter(procedureOwner);
 
+            // 在有限状态机数据里加入“NextSceneName”，并将其赋值为“MainMenu”。
             procedureOwner.SetData<VarString>("NextSceneName", "MainMenu");
+            // 加入用于判断Loading界面是否打开的布尔变量
+            procedureOwner.SetData<VarBool>("IsLoadingOpen", false);
+
+
+            // 切换流程到ProcedureChangeScene
             ChangeState<ProcedureChangeScene>(procedureOwner);
 
 

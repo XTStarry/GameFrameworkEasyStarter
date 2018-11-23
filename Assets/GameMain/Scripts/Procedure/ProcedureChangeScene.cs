@@ -21,9 +21,19 @@ namespace GameMain
     /// </summary>
     public partial class ProcedureChangeScene : ProcedureBase
     {
-        private int m_LoadingFormLogicId;
+        
 
-        private bool isLoadingOpen = false;
+
+        /// <summary>
+        /// Loading界面的编号
+        /// </summary>
+        static public int LoadingFormLogicId
+        {
+            get;
+            private set;
+        }
+        private ProcedureOwner m_ProcedureOwner;
+
 
         // 游戏初始化时执行。
         protected override void OnInit(ProcedureOwner procedureOwner)
@@ -35,9 +45,12 @@ namespace GameMain
             eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
         }
 
+        // 每次进入这个流程时执行。
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+
+            m_ProcedureOwner = procedureOwner;
 
             //关闭所有场景
             SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
@@ -46,36 +59,38 @@ namespace GameMain
             {
                 scene.UnloadScene(loadedSceneAssetNames[i]);
             }
-            
 
+            // 加载框架UI组件
+            UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
+            // 加载Loading界面
+            LoadingFormLogicId = UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_Loading.prefab", "Loading", 10, this);
+            
 
         }
 
+        // 每次轮询执行。
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 
-            // 加载框架UI组件
-            UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
-            if(!isLoadingOpen)
+
+            bool isLoadingOpen = procedureOwner.GetData<VarBool>("IsLoadingOpen").Value;
+            if(isLoadingOpen == true)
             {
-                // 加载UI
-                m_LoadingFormLogicId = UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_Loading.prefab", "Loading");
-                isLoadingOpen = true;
+                string nextSceneName = procedureOwner.GetData<VarString>("NextSceneName").Value;
+                Debug.Log(nextSceneName);
+                switch (nextSceneName)
+                {
+                    case "MainMenu":
+                        ChangeState<ProcedureMenu>(procedureOwner);
+                        break;
+                }
             }
             
 
-            string nextSceneName = procedureOwner.GetData<VarString>("NextSceneName").Value;
-            Debug.Log(nextSceneName);
-            switch (nextSceneName)
-            {
-                case "MainMenu":
-                    ChangeState<ProcedureMenu>(procedureOwner);
-                    break;
-            }
-
         }
 
+        // 每次离开这个流程时执行。
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
@@ -87,18 +102,21 @@ namespace GameMain
         // UIForm打开成功事件回调函数
         private void OnOpenUIFormSuccess(object sender, GameEventArgs e)
         {
-            Debug.Log("Loading界面加载成功");
+            
             OpenUIFormSuccessEventArgs ne = (OpenUIFormSuccessEventArgs)e;
 
-            // 判断userData是否为自己
+            // 判断userData是否为自己，需要在使用OpenUIForm时使用UserData
             if (ne.UserData != this)
             {
                 return;
             }
-            
+
+            // 判断是否加载的是Loading界面
             if (ne.UIForm.Logic as LoadingFormLogic)
             {
-                
+                Debug.Log("Loading界面加载成功");
+                m_ProcedureOwner.SetData<VarBool>("IsLoadingOpen", true);
+
             }
 
         }
