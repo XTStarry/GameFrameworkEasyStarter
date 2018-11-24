@@ -24,14 +24,6 @@ namespace GameMain
         
 
 
-        /// <summary>
-        /// Loading界面的编号
-        /// </summary>
-        static public int LoadingFormLogicId
-        {
-            get;
-            private set;
-        }
         private ProcedureOwner m_ProcedureOwner;
 
 
@@ -40,9 +32,7 @@ namespace GameMain
         {
             base.OnInit(procedureOwner);
 
-            //启用事件组件
-            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
-            eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+            
         }
 
         // 每次进入这个流程时执行。
@@ -51,6 +41,15 @@ namespace GameMain
             base.OnEnter(procedureOwner);
 
             m_ProcedureOwner = procedureOwner;
+
+
+
+            //启用事件组件
+            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
+            // 启用OpenUIFormSuccess
+            eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+
+
 
             //关闭所有场景
             SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
@@ -62,9 +61,11 @@ namespace GameMain
 
             // 加载框架UI组件
             UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
+
             // 加载Loading界面
-            LoadingFormLogicId = UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_Loading.prefab", "Loading", 10, this);
-            
+            int LoadingFormLogicId = UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_Loading.prefab", "Loading", int.MinValue, this);
+            // 加入用于保存Loading界面序列编号的整型变量
+            procedureOwner.SetData<VarInt>("LoadingSerialId", LoadingFormLogicId);
 
         }
 
@@ -94,7 +95,10 @@ namespace GameMain
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
-
+            // 启用事件组件
+            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
+            // 关闭OpenUIFormSucess
+            eventComponent.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
         }
 

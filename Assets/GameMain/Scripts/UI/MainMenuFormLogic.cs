@@ -18,15 +18,15 @@ namespace GameMain
     public class MainMenuFormLogic : UIFormLogic
     {
 
-        private ProcedureChangeScene m_ProcedureChangeScene;
+        private ProcedureMenu m_ProcedureChangeScene;
         protected MainMenuFormLogic() { }
 
         protected override void OnOpen(object userData)
         {
             base.OnOpen(userData);
 
-            // 打开UI的时候我们把ProcedureChangeScene作为参数传递了进去，在这里OnOpen事件会把它传递过来
-            m_ProcedureChangeScene = (ProcedureChangeScene)userData;
+            // 打开UI的时候我们把ProcedureMenu作为参数传递了进去，在这里OnOpen事件会把它传递过来
+            m_ProcedureChangeScene = (ProcedureMenu)userData;
             if (m_ProcedureChangeScene == null)
             {
                 return;

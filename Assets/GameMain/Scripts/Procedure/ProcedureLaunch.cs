@@ -36,7 +36,6 @@ namespace GameMain
             // 加入用于判断Loading界面是否打开的布尔变量
             procedureOwner.SetData<VarBool>("IsLoadingOpen", false);
 
-
             // 切换流程到ProcedureChangeScene
             ChangeState<ProcedureChangeScene>(procedureOwner);
 
