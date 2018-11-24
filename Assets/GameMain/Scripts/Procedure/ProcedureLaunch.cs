@@ -15,7 +15,7 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 namespace GameMain
 {
     /// <summary>
-    /// 启动流程
+    /// 启动流程类
     /// </summary>
     public class ProcedureLaunch : ProcedureBase
     {

@@ -13,13 +13,13 @@ namespace GameMain
 {
 
     /// <summary>
-    /// loading界面逻辑类
+    /// 主菜单逻辑类
     /// </summary>
-    public class LoadingFormLogic : UIFormLogic
+    public class MainMenuFormLogic : UIFormLogic
     {
 
         private ProcedureChangeScene m_ProcedureChangeScene;
-        protected LoadingFormLogic() { }
+        protected MainMenuFormLogic() { }
 
         protected override void OnOpen(object userData)
         {
@@ -33,7 +33,5 @@ namespace GameMain
             }
         }
     }
-
 }
-
 

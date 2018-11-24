@@ -17,7 +17,7 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 namespace GameMain
 {
     /// <summary>
-    /// 菜单流程
+    /// 菜单流程类
     /// </summary>
     public partial class ProcedureChangeScene : ProcedureBase
     {

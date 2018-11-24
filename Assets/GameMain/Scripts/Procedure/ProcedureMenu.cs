@@ -17,7 +17,7 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 namespace GameMain
 {
     /// <summary>
-    /// 菜单流程
+    /// 菜单流程类
     /// </summary>
     public class ProcedureMenu : ProcedureBase
     {
@@ -41,8 +41,12 @@ namespace GameMain
                 scene.UnloadScene(loadedSceneAssetNames[i]);
             }
 
-            
+            // 加载MainMenu场景
+            scene.LoadScene("MainMenu", this);
 
+            // 加载框架UI组件
+            UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
+            UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainMenu.prefab", "Menu", 5, this);
 
         }
 
