@@ -109,6 +109,19 @@ namespace GameMain
 
             }
         }
+
+        /// <summary>
+        /// 启动游戏
+        /// </summary>
+        public void StartMainGame()
+        {
+            Debug.Log("按下开始按钮");
+            m_ProcedureOwner.SetData<VarString>("NextSceneName", "MainGame");
+            SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
+            scene.LoadScene("MainGame");
+
+            ChangeState<ProcedureMainGame>(m_ProcedureOwner);
+        }
         
     }
 }

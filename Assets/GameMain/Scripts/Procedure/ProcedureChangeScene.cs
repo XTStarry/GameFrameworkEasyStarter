@@ -85,6 +85,10 @@ namespace GameMain
                     case "MainMenu":
                         ChangeState<ProcedureMenu>(procedureOwner);
                         break;
+                    case "MainGame":
+                        ChangeState<ProcedureMainGame>(procedureOwner);
+                        break;
+
                 }
             }
             
@@ -120,7 +124,6 @@ namespace GameMain
             {
                 Debug.Log("Loading界面加载成功");
                 m_ProcedureOwner.SetData<VarBool>("IsLoadingOpen", true);
-
             }
 
         }
