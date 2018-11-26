@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityGameFramework.Runtime;
 using GameFramework.Procedure;
 using GameFramework.Event;
+using UnityEngine.SceneManagement;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
 
@@ -31,7 +32,13 @@ namespace GameMain
             EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
             // 启用OpenUIFormSuccess
             eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+            eventComponent.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
 
+        }
+
+        private void OnLoadSceneSucess(object sender, GameEventArgs e)
+        {
+            Debug.Log("加载了一个场景");
         }
 
         // 每次进入这个流程时执行。
@@ -39,10 +46,6 @@ namespace GameMain
         {
             base.OnEnter(procedureOwner);
             m_ProcedureOwner = procedureOwner;
-
-
-            
-
 
             //关闭所有场景
             SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
@@ -54,8 +57,7 @@ namespace GameMain
 
             
             // 加载MainMenu场景
-            scene.LoadScene("MainMenu", this);
-
+            scene.LoadScene("Assets/GameMain/Scenes/MainMenu.unity", this);
             // 加载框架UI组件
             UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
             UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainMenu.prefab", "Menu", 1, this);
@@ -117,10 +119,8 @@ namespace GameMain
         {
             Debug.Log("按下开始按钮");
             m_ProcedureOwner.SetData<VarString>("NextSceneName", "MainGame");
-            SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
-            scene.LoadScene("MainGame");
 
-            ChangeState<ProcedureMainGame>(m_ProcedureOwner);
+            ChangeState<ProcedureChangeScene>(m_ProcedureOwner);
         }
         
     }

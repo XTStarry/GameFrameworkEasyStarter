@@ -74,7 +74,6 @@ namespace GameMain
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 
-
             bool isLoadingOpen = procedureOwner.GetData<VarBool>("IsLoadingOpen").Value;
             if(isLoadingOpen == true)
             {
@@ -83,6 +82,7 @@ namespace GameMain
                 switch (nextSceneName)
                 {
                     case "MainMenu":
+                        
                         ChangeState<ProcedureMenu>(procedureOwner);
                         break;
                     case "MainGame":

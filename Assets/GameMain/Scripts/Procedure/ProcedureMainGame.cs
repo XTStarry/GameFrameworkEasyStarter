@@ -35,22 +35,9 @@ namespace GameMain
         {
             base.OnEnter(procedureOwner);
 
-
-            //关闭所有场景
-            SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
-            string[] loadedSceneAssetNames = scene.GetLoadedSceneAssetNames();
-            for (int i = 0; i < loadedSceneAssetNames.Length; i++)
-            {
-                scene.UnloadScene(loadedSceneAssetNames[i]);
-            }
-
-
             // 加载MainGame场景
-            scene.LoadScene("MainMenu", this);
-
-            // 加载框架UI组件
-            UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
-            UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainMenu.prefab", "Menu", 1, this);
+            SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
+            scene.LoadScene("Assets/GameMain/Scenes/MainGame.unity", this);
 
         }
     }
