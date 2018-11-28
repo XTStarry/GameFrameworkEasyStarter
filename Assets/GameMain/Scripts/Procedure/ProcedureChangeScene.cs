@@ -57,6 +57,9 @@ namespace GameMain
 
             // 加载框架UI组件
             UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
+            // 关闭所有已加载的界面
+            UI_LoadingObject.CloseAllLoadedUIForms();
+
 
             // 加载Loading界面
             int LoadingFormLogicId = UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_Loading.prefab", "Loading", int.MinValue, this);

@@ -48,16 +48,8 @@ namespace GameMain
             base.OnEnter(procedureOwner);
             m_ProcedureOwner = procedureOwner;
 
-            //关闭所有场景
-            SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
-            string[] loadedSceneAssetNames = scene.GetLoadedSceneAssetNames();
-            for (int i = 0; i < loadedSceneAssetNames.Length; i++)
-            {
-                scene.UnloadScene(loadedSceneAssetNames[i]);
-            }
-
-            
             // 加载MainMenu场景
+            SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
             scene.LoadScene("Assets/GameMain/Scenes/MainMenu.unity", this);
             // 加载框架UI组件
             UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();

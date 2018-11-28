@@ -25,7 +25,10 @@ namespace GameMain
                 return;
             }
         }
-
+        public void IsBackMenu()
+        {
+            m_ProcedureMainGame.IsBackMenu();
+        }
     }
 }
 

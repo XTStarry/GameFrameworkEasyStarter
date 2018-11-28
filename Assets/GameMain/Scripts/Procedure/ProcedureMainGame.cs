@@ -60,5 +60,14 @@ namespace GameMain
                 m_procedureOwner.SetData<VarBool>("IsLoadingOpen", false);
             }
         }
+        /// <summary>
+        /// 返回主菜单
+        /// </summary>
+        public void IsBackMenu()
+        {
+            m_procedureOwner.SetData<VarString>("NextSceneName", "MainMenu");
+
+            ChangeState<ProcedureChangeScene>(m_procedureOwner);
+        }
     }
 }
