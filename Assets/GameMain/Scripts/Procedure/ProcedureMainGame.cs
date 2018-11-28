@@ -44,6 +44,30 @@ namespace GameMain
 
             UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
             UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainGame.prefab", "Menu", 1, this);
+
+            
+        }
+
+        // 每次轮询执行。
+        protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
+        {
+            base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+        }
+
+        // 每次离开这个流程时执行。
+        protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
+        {
+            base.OnLeave(procedureOwner, isShutdown);
+            // 启用事件组件
+            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
+            // 关闭OpenUIFormSucess
+            eventComponent.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+        }
+
+        // 游戏退出时执行。
+        protected override void OnDestroy(ProcedureOwner procedureOwner)
+        {
+            base.OnDestroy(procedureOwner);
         }
 
         private void OnOpenUIFormSuccess(object sender, GameEventArgs e)

@@ -28,11 +28,6 @@ namespace GameMain
         protected override void OnInit(ProcedureOwner procedureOwner)
         {
             base.OnInit(procedureOwner);
-            //启用事件组件
-            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
-            // 订阅OpenUIFormSuccess、OnLoadSceneSucess
-            eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
-            eventComponent.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
 
         }
 
@@ -46,6 +41,13 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+
+            //启用事件组件
+            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
+            // 订阅OpenUIFormSuccess、OnLoadSceneSucess
+            eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+            eventComponent.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
+
             m_ProcedureOwner = procedureOwner;
 
             // 加载MainMenu场景
@@ -71,8 +73,9 @@ namespace GameMain
             base.OnLeave(procedureOwner, isShutdown);
             // 启用事件组件
             EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
-            // 关闭OpenUIFormSucess
+            // 关闭OpenUIFormSucess和OnLoadSceneSucess
             eventComponent.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+            eventComponent.Unsubscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
         }
 
         // 游戏退出时执行。
