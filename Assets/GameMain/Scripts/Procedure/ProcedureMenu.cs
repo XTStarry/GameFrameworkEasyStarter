@@ -118,6 +118,11 @@ namespace GameMain
 
             ChangeState<ProcedureChangeScene>(m_ProcedureOwner);
         }
+
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
         
     }
 }

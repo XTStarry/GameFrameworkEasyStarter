@@ -25,7 +25,11 @@ namespace GameMain
                 return;
             }
         }
-        public void IsBackMenu()
+
+        /// <summary>
+        /// 按下返回菜单按钮时
+        /// </summary>
+        public void OnBackMenuClick()
         {
             m_ProcedureMainGame.IsBackMenu();
         }

@@ -40,6 +40,14 @@ namespace GameMain
         {
             m_ProcedureMenu.StartMainGame();
         }
+
+        /// <summary>
+        /// 按下Exit时触发
+        /// </summary>
+        public void OnExitButtonClick()
+        {
+            m_ProcedureMenu.ExitGame();
+        }
     }
 }
 
