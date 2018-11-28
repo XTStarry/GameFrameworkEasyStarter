@@ -42,14 +42,10 @@ namespace GameMain
 
             m_ProcedureOwner = procedureOwner;
 
-
-
             //启用事件组件
             EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
             // 启用OpenUIFormSuccess
             eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
-
-
 
             //关闭所有场景
             SceneComponent scene = GameEntry.GetComponent<SceneComponent>();

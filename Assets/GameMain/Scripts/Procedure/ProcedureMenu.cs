@@ -30,7 +30,7 @@ namespace GameMain
             base.OnInit(procedureOwner);
             //启用事件组件
             EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
-            // 启用OpenUIFormSuccess
+            // 订阅OpenUIFormSuccess、OnLoadSceneSucess
             eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
             eventComponent.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
 
@@ -38,7 +38,8 @@ namespace GameMain
 
         private void OnLoadSceneSucess(object sender, GameEventArgs e)
         {
-            Debug.Log("加载了一个场景");
+            // 启用事件组件并订阅相应事件后，每次达到条件都会执行一次相应事件回调函数
+            Debug.Log("成功加载了一个场景");
         }
 
         // 每次进入这个流程时执行。

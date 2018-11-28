@@ -22,23 +22,43 @@ namespace GameMain
     /// </summary>
     public partial class ProcedureMainGame : ProcedureBase
     {
+        ProcedureOwner m_procedureOwner;
         // 游戏初始化时执行。
         protected override void OnInit(ProcedureOwner procedureOwner)
         {
             base.OnInit(procedureOwner);
-
-
         }
 
         // 每次进入这个流程时执行。
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-
+            m_procedureOwner = procedureOwner;
+            // 启用事件组件
+            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
+            // 启用OpenUIFormSuccess
+            eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
             // 加载MainGame场景
             SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
             scene.LoadScene("Assets/GameMain/Scenes/MainGame.unity", this);
 
+            UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
+            UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainGame.prefab", "Menu", 1, this);
+        }
+
+        private void OnOpenUIFormSuccess(object sender, GameEventArgs e)
+        {
+            OpenUIFormSuccessEventArgs ne = (OpenUIFormSuccessEventArgs)e;
+            if(ne.UserData!=this)
+            {
+                return;
+            }
+            if (ne.UIForm.Logic as MainGameFormLogic)
+            {
+                UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
+                UI_LoadingObject.CloseUIForm(m_procedureOwner.GetData<VarInt>("LoadingSerialId"));
+                m_procedureOwner.SetData<VarBool>("IsLoadingOpen", false);
+            }
         }
     }
 }
