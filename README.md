@@ -36,7 +36,11 @@ Game Framework 是一个基于 Unity 5.3+ 引擎的游戏框架，主要对游�
 
 [[GameFramework\]Demo10-有限状态机的使用](http://www.benmutou.com/archives/2643)
 
+## 说明
 
+### 基础流程图
+
+![Procedure](Procedure.png)
 
 ## 示例
 
