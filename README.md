@@ -16,25 +16,25 @@ Game Framework 是一个基于 Unity 5.3+ 引擎的游戏框架，主要对游�
 
 在使用本模板前，希望你能够阅读笨木头的系列教程：
 
-[[GameFramework\]Demo1-如何创建一个GameFramework项目](http://www.benmutou.com/archives/2535)
+[GameFramework\]Demo1-如何创建一个GameFramework项目](http://www.benmutou.com/archives/2535)
 
-[[GameFramework\]Demo2-切换流程和场景](http://www.benmutou.com/archives/2548)
+[GameFramework\]Demo2-切换流程和场景](http://www.benmutou.com/archives/2548)
 
-[[GameFramework\]Demo3-加载UI](http://www.benmutou.com/archives/2564)
+[GameFramework\]Demo3-加载UI](http://www.benmutou.com/archives/2564)
 
-[[GameFramework\]Demo4-内置事件订阅](http://www.benmutou.com/archives/2571)
+[GameFramework\]Demo4-内置事件订阅](http://www.benmutou.com/archives/2571)
 
-[[GameFramework\]Demo5-加载配置文件](http://www.benmutou.com/archives/2579)
+[GameFramework\]Demo5-加载配置文件](http://www.benmutou.com/archives/2579)
 
-[[GameFramework\]Demo6-创建实体](http://www.benmutou.com/archives/2587)
+[GameFramework\]Demo6-创建实体](http://www.benmutou.com/archives/2587)
 
-[[GameFramework\]Demo7-发起Web请求](http://www.benmutou.com/archives/2603)
+[GameFramework\]Demo7-发起Web请求](http://www.benmutou.com/archives/2603)
 
-[[GameFramework\]Demo8-NetWork网络连接、发送、接收数据](http://www.benmutou.com/archives/2630)
+[GameFramework\]Demo8-NetWork网络连接、发送、接收数据](http://www.benmutou.com/archives/2630)
 
-[[GameFramework\]Demo9-AssetBundle打包的一些坑](http://www.benmutou.com/archives/2615)
+[GameFramework\]Demo9-AssetBundle打包的一些坑](http://www.benmutou.com/archives/2615)
 
-[[GameFramework\]Demo10-有限状态机的使用](http://www.benmutou.com/archives/2643)
+[GameFramework\]Demo10-有限状态机的使用](http://www.benmutou.com/archives/2643)
 
 ## 说明
 
