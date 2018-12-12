@@ -31,6 +31,7 @@ namespace GameMain
         /// </summary>
         public void OnBackMenuClick()
         {
+            Debug.Log("OnBackMenuClick");
             m_ProcedureMainGame.IsBackMenu();
         }
     }

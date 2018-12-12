@@ -46,6 +46,7 @@ namespace GameMain
         /// </summary>
         public void OnExitButtonClick()
         {
+            Debug.Log("OnExitButtonClick");
             m_ProcedureMenu.ExitGame();
         }
     }
