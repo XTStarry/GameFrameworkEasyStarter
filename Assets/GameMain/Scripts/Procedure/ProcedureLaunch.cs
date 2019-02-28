@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------
 // Game Framerwork Easy Starter
 // Powered By Game Framework v3.x
-// Copyright © 2017-2018 Gao Xiaotian. All rights reserved.
+// Copyright © 2017-2019 Gao Xiaotian. All rights reserved.
 // Homepage: http://www.xtstarry.top/
 // Feedback: mailto:xtstarry@qq.com
 //------------------------------------------------------------
@@ -35,7 +35,8 @@ namespace GameMain
             procedureOwner.SetData<VarString>("NextSceneName", "MainMenu");
             // 加入用于判断Loading界面是否打开的布尔变量
             procedureOwner.SetData<VarBool>("IsLoadingOpen", false);
-
+            // 加入用于判断游戏内菜单UI_MainGame是否打开的布尔变量
+            procedureOwner.SetData<VarBool>("IsMenuInGameOpen", false);
 
         }
 

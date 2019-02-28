@@ -42,20 +42,16 @@ namespace GameMain
         {
             base.OnEnter(procedureOwner);
 
-            //启用事件组件
-            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
             // 订阅OpenUIFormSuccess、OnLoadSceneSucess
-            eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
-            eventComponent.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
+            GameEntry.Event.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+            GameEntry.Event.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
 
             m_ProcedureOwner = procedureOwner;
 
             // 加载MainMenu场景
-            SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
-            scene.LoadScene("Assets/GameMain/Scenes/MainMenu.unity", this);
-            // 加载框架UI组件
-            UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
-            UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainMenu.prefab", "Menu", 1, this);
+            GameEntry.Scene.LoadScene("Assets/GameMain/Scenes/MainMenu.unity", this);
+            // 加载主菜单UI
+            GameEntry.UI.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainMenu.prefab", "Menu", 1, this);
 
         }
 
@@ -71,11 +67,9 @@ namespace GameMain
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
-            // 启用事件组件
-            EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
             // 关闭OpenUIFormSucess和OnLoadSceneSucess
-            eventComponent.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
-            eventComponent.Unsubscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
+            GameEntry.Event.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+            GameEntry.Event.Unsubscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
         }
 
         // 游戏退出时执行。
@@ -101,8 +95,7 @@ namespace GameMain
                 Debug.Log("MainMenu界面加载成功");
 
                 // 根据之前保存的Loading的编号，将其关闭
-                UIComponent uIComponent = GameEntry.GetComponent<UIComponent>();
-                uIComponent.CloseUIForm(m_ProcedureOwner.GetData<VarInt>("LoadingSerialId").Value);
+                GameEntry.UI.CloseUIForm(m_ProcedureOwner.GetData<VarInt>("LoadingSerialId").Value);
                 m_ProcedureOwner.SetData<VarBool>("IsLoadingOpen", false);
 
             }
