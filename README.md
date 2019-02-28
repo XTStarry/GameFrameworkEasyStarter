@@ -96,25 +96,21 @@ public class ProcedureLaunch : ProcedureBase
 ### 加载场景：
 
 ```c#
-SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
-scene.LoadScene("Assets/GameMain/Scenes/MainMenu.unity", this);
+GameEntry.Scene.LoadScene("Assets/GameMain/Scenes/MainMenu.unity", this);
 ```
 
 ### 加载UI：
 
 ```c#
-UIComponent UI_LoadingObject = GameEntry.GetComponent<UIComponent>();
-UI_LoadingObject.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainMenu.prefab", "Menu", 1, this);
+GameEntry.UI.OpenUIForm("Assets/GameMain/UI/Prefabs/UI_MainMenu.prefab", "Menu", 1, this);
 ```
 
 ### 事件组件：
 
 ```c#
-// 启用事件组件
-EventComponent eventComponent = GameEntry.GetComponent<EventComponent>();
 // 启用OpenUIFormSuccess和OnLoadSceneSucess
-eventComponent.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
-eventComponent.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
+GameEntry.Event.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+GameEntry.Event.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSucess);
 ```
 
 ### 事件回调函数示例：
